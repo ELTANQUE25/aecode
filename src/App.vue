@@ -1,6 +1,3 @@
-<!--
-An example of creating a reusable grid component and using it with external data.
--->
 
 <script setup>
 // import demogrid from './Grid.vue'
@@ -14,11 +11,12 @@ import './css/main.css'
 <Logo class="logo" />
 
 <swiper
-    :slides-per-view="1"
-    :space-between="50"
-    @swiper="onSwiper"
-    @slideChange="onSlideChange"
+   :pagination="{
+      type: 'progressbar',
+    }"
+    :navigation="true"
     
+ 
   >
     <swiper-slide>
       
@@ -37,29 +35,32 @@ import './css/main.css'
 
 </template>
 
+<!--
+An example of creating a reusable grid component and using it with external data.
+-->
 <script>
-  // Import Swiper Vue.js components
-  import { Swiper, SwiperSlide } from 'swiper/vue';
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
 
-  // Import Swiper styles
-  import 'swiper/css';
+// Import Swiper styles
+import "swiper/css";
 
-  export default {
-    components: {
-      Swiper,
-      SwiperSlide,
-    },
-    setup() {
-      const onSwiper = (swiper) => {
-        console.log(swiper);
-      };
-      const onSlideChange = () => {
-        console.log('slide change');
-      };
-      return {
-        onSwiper,
-        onSlideChange,
-      };
-    },
-  };
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+
+// import required modules
+import { Pagination, Navigation } from "swiper";
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {
+      modules: [Pagination, Navigation],
+    };
+  },
+};
 </script>
